@@ -1,0 +1,20 @@
+<mat-card class="todo-item">
+  <mat-card-header>
+    <mat-card-title>{{item.taskTitle}}</mat-card-title>
+    <mat-card-subtitle fxLayout="row wrap" fxLayoutAlign="space-between center" class="todo-subtitle">
+      <div>Project: {{item.projectName}}</div>
+      <div>Priority: {{item.priority}}</div>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="overflow-h" [@toggleState]="showDescription">{{item.description}}</div>
+  </mat-card-content>
+  <mat-card-actions class="todo-item-actions" fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <button (click)="edit.emit(item)" type="button" mat-raised-button color="primary"><mat-icon>mode_edit</mat-icon> Edit</button>
+    <button (click)="close.emit(item)" type="button" mat-raised-button color="accent"><mat-icon>check_circle</mat-icon> Close</button>
+    <button (click)="showDescription = !showDescription" type="button" mat-raised-button color="warn">
+      <mat-icon>{{showDescription ? 'expand_less' : 'expand_more'}}</mat-icon>
+      {{showDescription ? 'Expand' : 'Collapse'}}
+    </button>
+  </mat-card-actions>
+</mat-card>

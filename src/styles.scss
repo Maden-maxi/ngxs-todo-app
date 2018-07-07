@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~normalize.css/normalize.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.w-100 {
+  width: 100%;
+}
+.container {
+  min-height: 100vh;
+}
+.todo-container {
+  max-width: 600px;
+}
+.todo-app-title {
+  text-align: center;
+}
+.todo-list {
+  max-height: 400px;
+  overflow: auto;
+  margin-bottom: 20px;
+}
+.todo-item-actions {
+  margin-left: 0;
+  margin-right: 0;
+}
+.todo-item{
+  margin-bottom: 20px;
+  .mat-card-header-text {
+    margin: 0;
+    width: 100%;
+  }
+}
+.overflow-h {
+  overflow: hidden;
+}

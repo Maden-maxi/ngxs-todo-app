@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="container">
+  <div class="todo-container w-100">
+    <h1 class="todo-app-title">Todo</h1>
+    <mat-card class="todo-list" *ngIf="todos$ | async as todos">
+      <app-todo-list-item *ngFor="let todo of todos | filterBy:{projectName: projectName.value} | orderBy:sortBy" [item]="todo" (edit)="onEdit($event)" (close)="onClose($event)"></app-todo-list-item>
+
+      <mat-card *ngIf="!todos.length">
+        <mat-card-content>You have not tasks yet.</mat-card-content>
+        <mat-card-actions>
+          <button (click)="addDemoTodos()" type="button" mat-raised-button color="primary"><mat-icon>add_circle</mat-icon> Add Demo Task</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card>
+
+    <mat-card *ngIf="mode$ | async as mode">
+      <div *ngIf="mode === 'none'" fxLayout="row" fxLayoutAlign="start center" class="todo-actions">
+        <div fxFlex="33%">
+          <button (click)="turnAddMode()" type="button" mat-raised-button color="primary"><mat-icon>add_circle</mat-icon> New Task</button>
+        </div>
+        <div fxFlex="33%">
+          <mat-checkbox [formControl]="sort" (change)="changeSort($event)">Sort by priority</mat-checkbox>
+        </div>
+        <div fxFlex="33%">
+          <mat-form-field *ngIf="projects$ | async as projects">
+            <mat-select placeholder="All" [formControl]="projectName">
+              <mat-option value="">All</mat-option>
+              <mat-option *ngFor="let name of projects" [value]="name">
+                {{name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <app-todo-form *ngIf="mode !== 'none'" (formSubmit)="onFormSubmit($event)" (close)="onFormClose()" [form$]="todoForm$" [mode]="mode"></app-todo-form>
+    </mat-card>
+
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<form class="example-container" fxLayout="column" fxLayoutAlign="start center" [formGroup]="form" [appConnectForm]="form$ | async" (ngSubmit)="onSubmit()">
+  <mat-form-field class="w-100">
+    <input matInput formControlName="taskTitle" placeholder="Task name" required>
+    <mat-error *ngIf="form.get('taskTitle').invalid">Field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <input matInput formControlName="projectName" placeholder="Project name" required>
+    <mat-error *ngIf="form.get('projectName').invalid">Field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <mat-select [formControlName]="'priority'" placeholder="Select" [required]="true">
+      <mat-option *ngFor="let priority of priorities" [value]="priority">{{priority}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('priority').invalid">Field is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="w-100">
+    <textarea matInput formControlName="description" placeholder="Description" required></textarea>
+    <mat-error *ngIf="form.get('description').invalid">Field is required</mat-error>
+  </mat-form-field>
+
+  <div class="w-100" fxLayout="row" fxLayoutAlign="end center">
+    <button type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Save changes</button>
+    <button (click)="close.emit()" type="button" mat-raised-button color="warn" [style.margin-left]="'10px'">Close</button>
+  </div>
+
+</form>
