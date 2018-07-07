@@ -23,6 +23,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { TodoListItemComponent } from './components/todo-list-item/todo-list-item.component';
 import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { ConnectFormDirective } from './directives/connect-form.directive';
+import { TodoActionsComponent } from './components/todo-actions/todo-actions.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @NgModule({
   imports: [
@@ -46,6 +48,8 @@ import { ConnectFormDirective } from './directives/connect-form.directive';
   ],
   declarations: [
     TodoComponent,
+    TodoActionsComponent,
+    TodoListComponent,
     TodoListItemComponent,
     TodoFormComponent,
     ConnectFormDirective
